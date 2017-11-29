@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {CinemaService} from '../services/cinema.service'
 import { ActivatedRoute, Router } from '@angular/router';
 import{Imovies} from '../interfaces/Imovies';
+import * as _ from 'underscore';
 import sampleMovies from '../../sample-movies' // si me traigo service importa esto?
 
 @Component({
@@ -10,17 +11,13 @@ import sampleMovies from '../../sample-movies' // si me traigo service importa e
   styleUrls: ['./my-movie.component.css']
 })
 export class MyMovieComponent implements OnInit {
-  movies:Array<Imovies> = sampleMovies;
-
-
+  movie;
   constructor(private addService:CinemaService, private route: ActivatedRoute) {
-  this.route.params
-    .subscribe((params) => this.movies = params['id']);
 }
-
+//repasar --> pintar una peli es llamar a la funcion getmovie pasandole el params [id]
   ngOnInit() {
+      this.route.params
+      .subscribe((params) => this.movie = this.addService.getMovie(params['id']));
   }
-  getMovie(idMovie:number){
+    // return _.findWhere(this.movies, { id: idMovie });
   }
-
-}

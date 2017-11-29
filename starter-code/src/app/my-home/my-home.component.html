@@ -1,6 +1,13 @@
 <p>
-  my-home works!
+  Movies now playing
 </p>
-<div *ngFor="let movie of movies">
-{{ movie.title }
+<div *ngFor="let movie of movies" class = "billbord-movies-continer">
+<p>Room:{{ movie.room }}</p>
+{{ movie.title }}
+<br>
+<img src="{{movie.poster}}" alt="">
+<br>
+<!-- //link no me va -->
+  <a [routerLink] = "['movie', movie.id]">Details</a>
+  <!-- <app-my-home></app-my-home> -->
 </div>
